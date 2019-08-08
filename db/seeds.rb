@@ -5,3 +5,49 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts 'Cleaning database...'
+Ingredient.destroy_all
+
+puts 'Creating ingredients...'
+
+ingredient_parameters = []
+url_ingredients = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+
+ingredient_json_file = open(url_ingredients).read
+result_ingredients = JSON.parse(ingredient_json_file)
+
+result_ingredients['drinks'].each do |element|
+  seed_ingredient = {
+    name: element['strIngredient1']
+  }
+  ingredient_parameters << seed_ingredient
+end
+
+ingredients = Ingredient.create(ingredient_parameters)
+
+puts 'Finished ingredients.'
+
+puts 'Creating cocktails...'
+
+cocktail_parameters = []
+url_cocktails = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail'
+
+cocktail_json_file = open(url_cocktails).read
+result_cocktails = JSON.parse(cocktail_json_file)
+
+result_cocktails['drinks'].each do |element|
+  seed_cocktail = {
+    name: element['strDrink']
+  }
+  cocktail_parameters << seed_cocktail
+end
+
+cocktails = Cocktail.create(cocktail_parameters)
+
+puts 'Finished cocktails.'
+
+
+
+
+
