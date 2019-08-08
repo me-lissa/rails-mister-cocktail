@@ -1,0 +1,19 @@
+<h1>Cocktails#index</h1>
+<p>Find me in app/views/cocktails/index.html.erb</p>
+
+
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag cocktail.img_url, class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title" style="height: 50px;"> <%= cocktail.name%></h5>
+          <%=link_to "See Details", cocktail_path(cocktail),  class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
