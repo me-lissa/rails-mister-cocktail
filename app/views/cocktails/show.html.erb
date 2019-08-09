@@ -1,11 +1,20 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
 
-<%= @cocktail.name %>
-<%= image_tag @cocktail.img_url%>
+<div class="container">
+  <h1><%= @cocktail.name %></h1>
 
-<% @cocktail.doses.each do |dose|%>
+  <%= image_tag @cocktail.img_url%>
+  <br>
+
+  <%= link_to "add dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+
+
+  <% @cocktail.doses.each do |dose|%>
   <h2> <%= dose.ingredient.name %></h2>
   <p> <%= dose.description %></p>
-<% end %>
+    <%= link_to "delete dose", dose_path(dose.id), method: :delete, class: "btn btn-danger" %>
+  <% end %>
+  <br>
+  <br>
 
+  <%= link_to "back to cocktails", cocktails_path, class: "btn btn-secondary"  %>
+</div>

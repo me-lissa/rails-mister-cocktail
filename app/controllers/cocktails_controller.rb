@@ -5,7 +5,7 @@ class CocktailsController < ApplicationController
   end
 
   def new
-    @cocktail = Coktail.new
+    @cocktail = Cocktail.new
   end
 
   def create

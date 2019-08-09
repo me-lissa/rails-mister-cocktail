@@ -1,8 +1,9 @@
-<h1>Cocktails#index</h1>
-<p>Find me in app/views/cocktails/index.html.erb</p>
-
 
 <div class="container">
+<h1>All Cocktails</h1>
+  <%= link_to "Add Cocktail", new_cocktail_path, class: "btn btn-secondary" %>
+  <br>
+  <br>
   <div class="row">
     <% @cocktails.each do |cocktail| %>
     <div class="col-4">
